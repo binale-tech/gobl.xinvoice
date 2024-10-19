@@ -80,12 +80,24 @@
 					"price": "90.00",
 					"unit": "h"
 				},
-				"sum": "1800.00",
+				"sum": "2000.00",
 				"taxes": [
 					{
 						"cat": "VAT",
 						"rate": "standard",
 						"percent": "19%"
+					}
+				],
+				"discounts": [
+					{
+						"amount": "300.00",
+						"code": "100"
+					}
+				],
+				"charges": [
+					{
+						"amount": "100.00",
+						"code": "64"
 					}
 				],
 				"total": "1800.00"
@@ -119,6 +131,7 @@
 				],
 				"sum": "342.00"
 			},
+			"discount": "200.00",
 			"tax": "342.00",
 			"total_with_tax": "2142.00",
 			"payable": "2142.00"

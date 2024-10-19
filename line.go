@@ -23,8 +23,9 @@ type Quantity struct {
 
 // TradeSettlement defines the structure of the SpecifiedLineTradeSettlement of the CII standard
 type TradeSettlement struct {
-	ApplicableTradeTax []*ApplicableTradeTax `xml:"ram:ApplicableTradeTax"`
-	Sum                string                `xml:"ram:SpecifiedTradeSettlementLineMonetarySummation>ram:LineTotalAmount"`
+	ApplicableTradeTax            []*ApplicableTradeTax            `xml:"ram:ApplicableTradeTax"`
+	SpecifiedTradeAllowanceCharge []*SpecifiedTradeAllowanceCharge `xml:"ram:SpecifiedTradeAllowanceCharge"`
+	Sum                           string                           `xml:"ram:SpecifiedTradeSettlementLineMonetarySummation>ram:LineTotalAmount"`
 }
 
 // ApplicableTradeTax defines the structure of ApplicableTradeTax of the CII standard
@@ -32,6 +33,14 @@ type ApplicableTradeTax struct {
 	TaxType        string `xml:"ram:TypeCode"`
 	TaxCode        string `xml:"ram:CategoryCode"`
 	TaxRatePercent string `xml:"ram:RateApplicablePercent"`
+}
+
+// SpecifiedTradeAllowanceCharge defines the structure of SpecifiedTradeAllowanceCharge of the CII standard
+type SpecifiedTradeAllowanceCharge struct {
+	Indicator bool   `xml:"ram:ChargeIndicator>udt:Indicator"`
+	Amount    string `xml:"ram:ActualAmount"`
+	Code      string `xml:"ram:ReasonCode"`
+	Reason    string `xml:"ram:Reason"`
 }
 
 func newLine(line *bill.Line) *Line {
@@ -56,6 +65,7 @@ func newLine(line *bill.Line) *Line {
 
 func newTradeSettlement(line *bill.Line) *TradeSettlement {
 	var applicableTradeTax []*ApplicableTradeTax
+	var specifiedTradeAllowanceCharge []*SpecifiedTradeAllowanceCharge
 	for _, tax := range line.Taxes {
 		tradeTax := &ApplicableTradeTax{
 			TaxType: tax.Category.String(),
@@ -68,10 +78,31 @@ func newTradeSettlement(line *bill.Line) *TradeSettlement {
 
 		applicableTradeTax = append(applicableTradeTax, tradeTax)
 	}
+	for _, discount := range line.Discounts {
+		tradeAllowanceChange := &SpecifiedTradeAllowanceCharge{
+			Indicator: false,
+			Amount:    discount.Amount.String(),
+			Reason:    discount.Reason,
+			Code:      discount.Code,
+		}
+
+		specifiedTradeAllowanceCharge = append(specifiedTradeAllowanceCharge, tradeAllowanceChange)
+	}
+	for _, charge := range line.Charges {
+		tradeAllowanceChange := &SpecifiedTradeAllowanceCharge{
+			Indicator: true,
+			Amount:    charge.Amount.String(),
+			Reason:    charge.Reason,
+			Code:      charge.Code,
+		}
+
+		specifiedTradeAllowanceCharge = append(specifiedTradeAllowanceCharge, tradeAllowanceChange)
+	}
 
 	settlement := &TradeSettlement{
-		ApplicableTradeTax: applicableTradeTax,
-		Sum:                line.Total.String(),
+		ApplicableTradeTax:            applicableTradeTax,
+		SpecifiedTradeAllowanceCharge: specifiedTradeAllowanceCharge,
+		Sum:                           line.Total.String(),
 	}
 
 	return settlement

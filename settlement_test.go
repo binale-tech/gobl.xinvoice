@@ -23,6 +23,8 @@ func TestNewSettlement(t *testing.T) {
 		assert.Equal(t, "2142.00", doc.Transaction.Settlement.Summary.GrandTotalAmount)
 		assert.Equal(t, "2142.00", doc.Transaction.Settlement.Summary.DuePayableAmount)
 		assert.Equal(t, "342.00", doc.Transaction.Settlement.Summary.TaxTotalAmount.Amount)
+		assert.Equal(t, "300.00", doc.Transaction.Settlement.Summary.AllowanceTotalAmount)
+		assert.Equal(t, "100.00", doc.Transaction.Settlement.Summary.ChargeTotalAmount)
 		assert.Equal(t, "EUR", doc.Transaction.Settlement.Summary.TaxTotalAmount.Currency)
 	})
 

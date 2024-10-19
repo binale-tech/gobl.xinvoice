@@ -26,11 +26,13 @@ type Tax struct {
 
 // Summary defines the structure of SpecifiedTradeSettlementHeaderMonetarySummation of the CII standard
 type Summary struct {
-	TotalAmount         string          `xml:"ram:LineTotalAmount"`
-	TaxBasisTotalAmount string          `xml:"ram:TaxBasisTotalAmount"`
-	TaxTotalAmount      *TaxTotalAmount `xml:"ram:TaxTotalAmount"`
-	GrandTotalAmount    string          `xml:"ram:GrandTotalAmount"`
-	DuePayableAmount    string          `xml:"ram:DuePayableAmount"`
+	TotalAmount          string          `xml:"ram:LineTotalAmount"`
+	TaxBasisTotalAmount  string          `xml:"ram:TaxBasisTotalAmount"`
+	TaxTotalAmount       *TaxTotalAmount `xml:"ram:TaxTotalAmount"`
+	GrandTotalAmount     string          `xml:"ram:GrandTotalAmount"`
+	DuePayableAmount     string          `xml:"ram:DuePayableAmount"`
+	AllowanceTotalAmount string          `xml:"ram:AllowanceTotalAmount"`
+	ChargeTotalAmount    string          `xml:"ram:ChargeTotalAmount"`
 }
 
 // ReferencedDocument defines the structure of InvoiceReferencedDocument of the CII standard
@@ -75,7 +77,7 @@ func NewSettlement(inv *bill.Invoice) *Settlement {
 }
 
 func newSummary(totals *bill.Totals, currency string) *Summary {
-	return &Summary{
+	summary := &Summary{
 		TotalAmount:         totals.Total.String(),
 		TaxBasisTotalAmount: totals.Total.String(),
 		GrandTotalAmount:    totals.TotalWithTax.String(),
@@ -85,6 +87,13 @@ func newSummary(totals *bill.Totals, currency string) *Summary {
 			Currency: currency,
 		},
 	}
+	if totals.Discount != nil {
+		summary.AllowanceTotalAmount = totals.Discount.String()
+	}
+	if totals.Charge != nil {
+		summary.ChargeTotalAmount = totals.Charge.String()
+	}
+	return summary
 }
 
 func newTaxes(total *tax.Total) []*Tax {
