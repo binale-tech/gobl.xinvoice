@@ -39,8 +39,8 @@ type ApplicableTradeTax struct {
 type SpecifiedTradeAllowanceCharge struct {
 	Indicator bool   `xml:"ram:ChargeIndicator>udt:Indicator"`
 	Amount    string `xml:"ram:ActualAmount"`
-	Code      string `xml:"ram:ReasonCode"`
-	Reason    string `xml:"ram:Reason"`
+	Code      string `xml:"ram:ReasonCode,omitempty"`
+	Reason    string `xml:"ram:Reason,omitempty"`
 }
 
 func newLine(line *bill.Line) *Line {

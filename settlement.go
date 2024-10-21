@@ -27,8 +27,8 @@ type Tax struct {
 // Summary defines the structure of SpecifiedTradeSettlementHeaderMonetarySummation of the CII standard
 type Summary struct {
 	TotalAmount          string          `xml:"ram:LineTotalAmount"`
-	ChargeTotalAmount    string          `xml:"ram:ChargeTotalAmount"`
-	AllowanceTotalAmount string          `xml:"ram:AllowanceTotalAmount"`
+	ChargeTotalAmount    string          `xml:"ram:ChargeTotalAmount,omitempty"`
+	AllowanceTotalAmount string          `xml:"ram:AllowanceTotalAmount,omitempty"`
 	TaxBasisTotalAmount  string          `xml:"ram:TaxBasisTotalAmount"`
 	TaxTotalAmount       *TaxTotalAmount `xml:"ram:TaxTotalAmount"`
 	GrandTotalAmount     string          `xml:"ram:GrandTotalAmount"`
