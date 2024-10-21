@@ -27,12 +27,12 @@ type Tax struct {
 // Summary defines the structure of SpecifiedTradeSettlementHeaderMonetarySummation of the CII standard
 type Summary struct {
 	TotalAmount          string          `xml:"ram:LineTotalAmount"`
+	ChargeTotalAmount    string          `xml:"ram:ChargeTotalAmount"`
+	AllowanceTotalAmount string          `xml:"ram:AllowanceTotalAmount"`
 	TaxBasisTotalAmount  string          `xml:"ram:TaxBasisTotalAmount"`
 	TaxTotalAmount       *TaxTotalAmount `xml:"ram:TaxTotalAmount"`
 	GrandTotalAmount     string          `xml:"ram:GrandTotalAmount"`
 	DuePayableAmount     string          `xml:"ram:DuePayableAmount"`
-	AllowanceTotalAmount string          `xml:"ram:AllowanceTotalAmount"`
-	ChargeTotalAmount    string          `xml:"ram:ChargeTotalAmount"`
 }
 
 // ReferencedDocument defines the structure of InvoiceReferencedDocument of the CII standard
