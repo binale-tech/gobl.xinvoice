@@ -1,8 +1,10 @@
 package xinvoice
 
 import (
+	"fmt"
 	"github.com/invopop/gobl/bill"
 	"github.com/invopop/gobl/org"
+	"strings"
 )
 
 // SchemeIDEmail represents the Scheme ID for email addresses
@@ -59,7 +61,7 @@ func NewPostalTradeAddress(addresses []*org.Address) *PostalTradeAddress {
 
 	postalTradeAddress := &PostalTradeAddress{
 		Postcode:  address.Code,
-		LineOne:   address.Street,
+		LineOne:   strings.TrimSpace(fmt.Sprintf("%s %s", address.Street, address.Number)),
 		City:      address.Locality,
 		CountryID: string(address.Country),
 	}
