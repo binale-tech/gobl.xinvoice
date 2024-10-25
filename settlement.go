@@ -77,7 +77,7 @@ func NewSettlement(inv *bill.Invoice) *Settlement {
 }
 
 func newSummary(totals *bill.Totals, currency string) *Summary {
-	summary := &Summary{
+	return &Summary{
 		TotalAmount:         totals.Total.String(),
 		TaxBasisTotalAmount: totals.Total.String(),
 		GrandTotalAmount:    totals.TotalWithTax.String(),
@@ -87,13 +87,6 @@ func newSummary(totals *bill.Totals, currency string) *Summary {
 			Currency: currency,
 		},
 	}
-	if totals.Discount != nil {
-		summary.AllowanceTotalAmount = totals.Discount.String()
-	}
-	if totals.Charge != nil {
-		summary.ChargeTotalAmount = totals.Charge.String()
-	}
-	return summary
 }
 
 func newTaxes(total *tax.Total) []*Tax {
