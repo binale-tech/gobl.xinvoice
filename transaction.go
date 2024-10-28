@@ -25,9 +25,12 @@ func NewTransaction(inv *bill.Invoice) (*Transaction, error) {
 	}
 
 	transaction := &Transaction{
-		Lines:      NewLines(inv.Lines),
-		Agreement:  agreement,
-		Delivery:   &Delivery{},
+		Lines:     NewLines(inv.Lines),
+		Agreement: agreement,
+		Delivery: &Delivery{Event: &Date{
+			Date:   formatIssueDate(inv.IssueDate),
+			Format: IssueDateFormat,
+		}},
 		Settlement: NewSettlement(inv),
 	}
 
