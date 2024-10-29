@@ -20,7 +20,7 @@ func TestNewSeller(t *testing.T) {
 		assert.Equal(t, "+49100200300", doc.Transaction.Agreement.Seller.Contact.Phone)
 		assert.Equal(t, "billing@example.com", doc.Transaction.Agreement.Seller.Contact.Email)
 		assert.Equal(t, "69190", doc.Transaction.Agreement.Seller.PostalTradeAddress.Postcode)
-		assert.Equal(t, "Dietmar-Hopp-Allee", doc.Transaction.Agreement.Seller.PostalTradeAddress.LineOne)
+		assert.Equal(t, "Dietmar-Hopp-Allee 16", doc.Transaction.Agreement.Seller.PostalTradeAddress.LineOne)
 		assert.Equal(t, "Walldorf", doc.Transaction.Agreement.Seller.PostalTradeAddress.City)
 		assert.Equal(t, "DE", doc.Transaction.Agreement.Seller.PostalTradeAddress.CountryID)
 		assert.Equal(t, "billing@example.com", doc.Transaction.Agreement.Seller.URIUniversalCommunication.URIID)
