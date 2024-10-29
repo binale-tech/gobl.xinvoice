@@ -25,13 +25,16 @@ func NewTransaction(inv *bill.Invoice) (*Transaction, error) {
 	}
 
 	transaction := &Transaction{
-		Lines:     NewLines(inv.Lines),
-		Agreement: agreement,
-		Delivery: &Delivery{Event: &Date{
-			Date:   formatIssueDate(inv.IssueDate),
-			Format: IssueDateFormat,
-		}},
+		Lines:      NewLines(inv.Lines),
+		Agreement:  agreement,
+		Delivery:   &Delivery{},
 		Settlement: NewSettlement(inv),
+	}
+	if inv.Delivery != nil && inv.Delivery.Date != nil {
+		transaction.Delivery.Event = &Date{
+			Date:   formatIssueDate(*inv.Delivery.Date),
+			Format: IssueDateFormat,
+		}
 	}
 
 	return transaction, nil
