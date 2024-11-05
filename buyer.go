@@ -10,6 +10,7 @@ type Buyer struct {
 	Name                      string                     `xml:"ram:Name"`
 	PostalTradeAddress        *PostalTradeAddress        `xml:"ram:PostalTradeAddress"`
 	URIUniversalCommunication *URIUniversalCommunication `xml:"ram:URIUniversalCommunication>ram:URIID"`
+	SpecifiedTaxRegistration  *SpecifiedTaxRegistration  `xml:"ram:SpecifiedTaxRegistration>ram:ID"`
 }
 
 // NewBuyer creates the BuyerTradeParty part of a EN 16931 compliant invoice
@@ -22,6 +23,10 @@ func NewBuyer(customer *org.Party) *Buyer {
 
 	if customer.TaxID != nil {
 		buyer.ID = customer.TaxID.String()
+		buyer.SpecifiedTaxRegistration = &SpecifiedTaxRegistration{
+			ID:       customer.TaxID.String(),
+			SchemeID: "VA",
+		}
 	}
 
 	return buyer
