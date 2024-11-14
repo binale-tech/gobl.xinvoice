@@ -60,7 +60,7 @@ func NewPostalTradeAddress(addresses []*org.Address) *PostalTradeAddress {
 	address := addresses[0]
 
 	postalTradeAddress := &PostalTradeAddress{
-		Postcode:  address.Code,
+		Postcode:  string(address.Code),
 		LineOne:   strings.TrimSpace(fmt.Sprintf("%s %s", address.Street, address.Number)),
 		City:      address.Locality,
 		CountryID: string(address.Country),

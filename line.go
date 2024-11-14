@@ -83,7 +83,7 @@ func newTradeSettlement(line *bill.Line) *TradeSettlement {
 			Indicator: false,
 			Amount:    discount.Amount.String(),
 			Reason:    discount.Reason,
-			Code:      discount.Code,
+			Code:      string(discount.Code),
 		}
 
 		specifiedTradeAllowanceCharge = append(specifiedTradeAllowanceCharge, tradeAllowanceChange)
@@ -93,7 +93,7 @@ func newTradeSettlement(line *bill.Line) *TradeSettlement {
 			Indicator: true,
 			Amount:    charge.Amount.String(),
 			Reason:    charge.Reason,
-			Code:      charge.Code,
+			Code:      string(charge.Code),
 		}
 
 		specifiedTradeAllowanceCharge = append(specifiedTradeAllowanceCharge, tradeAllowanceChange)
