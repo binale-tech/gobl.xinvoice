@@ -16,6 +16,12 @@
 		"code": "001",
 		"issue_date": "2024-02-13",
 		"currency": "EUR",
+		"notes" : [
+			{
+				"code" : "REG",
+				"text" : "Gescheftsfuhrer: Max Mustermann"
+			}
+		],
 		"supplier": {
 			"name": "Provide One GmbH",
 			"tax_id": {
@@ -80,10 +86,9 @@
 				"quantity": "20",
 				"item": {
 					"name": "Development services",
-					"price": "90.00",
+					"price": "100.00",
 					"unit": "h"
 				},
-				"sum": "2000.00",
 				"taxes": [
 					{
 						"cat": "VAT",
@@ -100,7 +105,7 @@
 				"charges": [
 					{
 						"amount": "100.00",
-						"code": "64"
+						"code": "ABK"
 					}
 				],
 				"total": "1800.00"

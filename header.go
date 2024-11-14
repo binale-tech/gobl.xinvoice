@@ -28,7 +28,7 @@ type Note struct {
 
 // NewHeader creates the ExchangedDocument part of a EN 16931 compliant invoice
 func NewHeader(inv *bill.Invoice) *Header {
-	return &Header{
+	header := &Header{
 		ID:       invoiceNumber(inv.Series, inv.Code),
 		TypeCode: invoiceTypeCode(inv),
 		IssueDate: &Date{
@@ -36,6 +36,13 @@ func NewHeader(inv *bill.Invoice) *Header {
 			Format: IssueDateFormat,
 		},
 	}
+	if len(inv.Notes) > 0 {
+		header.IncludedNote = &Note{
+			Content:     inv.Notes[0].Text,
+			SubjectCode: inv.Notes[0].Code,
+		}
+	}
+	return header
 }
 
 func formatIssueDate(date cal.Date) string {

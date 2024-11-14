@@ -52,6 +52,19 @@ func NewSeller(supplier *org.Party) *Seller {
 			ID:       supplier.TaxID.String(),
 			SchemeID: "VA",
 		}
+		//if supplier.TaxID.Type == "FC" {
+		//	// BT-32 Steuernummer
+		//	seller.SpecifiedTaxRegistration = &SpecifiedTaxRegistration{
+		//		ID:       fmt.Sprintf("%s", supplier.TaxID.Code),
+		//		SchemeID: "FC",
+		//	}
+		//} else {
+		//	// BT-31 - VAT ID
+		//	seller.SpecifiedTaxRegistration = &SpecifiedTaxRegistration{
+		//		ID:       supplier.TaxID.String(),
+		//		SchemeID: "VA",
+		//	}
+		//}
 	}
 
 	return seller
