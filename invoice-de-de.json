@@ -1,0 +1,157 @@
+{
+  "$schema": "https://gobl.org/draft-0/envelope",
+  "head": {
+    "uuid": "8a51fd30-2a27-11ee-be56-0242ac120002",
+    "dig": {
+      "alg": "sha256",
+      "val": "583130bdfd84c31d23f7bcdf778363ffdbc7eb132faf1180efb1be1fc438e069"
+    }
+  },
+  "doc": {
+    "$schema": "https://gobl.org/draft-0/bill/invoice",
+    "$regime": "DE",
+    "tax": {
+      "ext": {
+        "untdid-document-type": "380"
+      }
+    },
+    "$addons": [
+      "eu-en16931-v2017"
+    ],
+    "uuid": "62a159ba-f08c-46ad-b48a-5502964c4254",
+    "type": "standard",
+    "code": "2024130",
+    "issue_date": "2024-10-28",
+    "delivery": {
+      "date": "2024-10-31"
+    },
+    "currency": "EUR",
+    "supplier": {
+      "name": "Kozz",
+      "tax_id": {
+        "country": "AT",
+        "code": "U18522105",
+        "type": "VA"
+      },
+      "addresses": [
+        {
+          "num": "10",
+          "street": "Kochhannstraße",
+          "locality": "Berlin",
+          "code": "10249",
+          "country": "DE"
+        }
+      ],
+      "emails": [
+        {
+          "addr": "ustarts@gmail.com"
+        }
+      ],
+      "people": [
+        {
+          "name": {
+            "given": "Yury Kozyrev"
+          },
+          "emails": [
+            {
+              "addr": "ustarts@gmail.com"
+            }
+          ]
+        }
+      ],
+      "telephones": []
+    },
+    "customer": {
+      "name": "Projekt K GmbH",
+      "tax_id": {
+        "country": "DE",
+        "code": "323312041"
+      },
+      "addresses": [
+        {
+          "num": "132",
+          "street": "Weinerpark",
+          "locality": "Ettenheim",
+          "code": "77955",
+          "country": "DE"
+        }
+      ],
+      "emails": [
+        {
+          "addr": "invoice@projekt-k.de"
+        }
+      ],
+      "telephones": []
+    },
+    "lines": [
+      {
+        "quantity": 2,
+        "item": {
+          "name": "Produkt 1",
+          "price": "150.00",
+          "unit": "piece"
+        },
+        "taxes": [
+          {
+            "cat": "VAT",
+            "percent": "19%",
+            "ext": {
+              "untdid-tax-category": "S"
+            }
+          }
+        ]
+      },
+      {
+        "quantity": 1,
+        "item": {
+          "name": "Product 2",
+          "price": "300.00",
+          "unit": "piece"
+        },
+        "taxes": [
+          {
+            "cat": "VAT",
+            "percent": "7%",
+            "ext": {
+              "untdid-tax-category": "S"
+            }
+          }
+        ]
+      },
+      {
+        "quantity": 1,
+        "item": {
+          "name": "Lieferung und Einrichtung (pauschal)",
+          "price": "100.00",
+          "unit": "piece"
+        },
+        "taxes": [
+          {
+            "cat": "VAT",
+            "percent": "19%",
+            "ext": {
+              "untdid-tax-category": "S"
+            }
+          }
+        ]
+      }
+    ],
+    "notes": [
+      {
+        "code": "REG",
+        "text": "Geschäftsführer: Dipl. Eng. Jürgen Kozyrev, HR: Berlin (Charlottenburg) HRA 99098"
+      }
+    ],
+    "payment": {
+      "terms": {
+        "detail": "Bitte überweisen Sie den Betrag innerhalb von 14 Tagen"
+      },
+      "instructions": {
+        "key": "credit-transfer",
+        "ext": {
+          "untdid-payment-means": "1"
+        }
+      }
+    }
+  }
+}

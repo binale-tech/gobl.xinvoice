@@ -14,6 +14,8 @@ require (
 	gitlab.com/flimzy/testy v0.14.0
 )
 
+replace github.com/invopop/gobl.cii v0.0.0-20241114223258-6c81aeced980 => github.com/urakozz/gobl.cii v0.0.0-20241115230316-e88071ab9e72
+
 require (
 	cloud.google.com/go v0.116.0 // indirect
 	github.com/Masterminds/semver/v3 v3.3.0 // indirect
